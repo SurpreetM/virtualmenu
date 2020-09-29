@@ -3,4 +3,6 @@ class FoodItemsController < ApplicationController
         @food_items = FoodItem.all
         render json: @food_items
     end
+
+    
 end
