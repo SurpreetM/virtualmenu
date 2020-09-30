@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+FoodItem.destroy_all
+Heading.destroy_all
+
 heading_1 = Heading.create(name: "Appetizers")
 heading_2 = Heading.create(name: "Entrees")
 heading_3 = Heading.create(name: "Salads")
