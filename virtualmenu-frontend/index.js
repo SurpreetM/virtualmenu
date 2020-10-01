@@ -2,6 +2,8 @@ document.addEventListener( "DOMContentLoaded", function () {
     addHeadings()
     addFoodItems()
   } );
+
+  class 
   
   
   function addFoodItems() {  
@@ -23,6 +25,8 @@ document.addEventListener( "DOMContentLoaded", function () {
         }
     }
 
+    
+
     function addHeadings() {  
         fetch('http://localhost:3000/headings') 
             .then(function(response) {
@@ -33,11 +37,11 @@ document.addEventListener( "DOMContentLoaded", function () {
             })
         }
     
-        function appendHeadings(json) {
-            var main = document.getElementById("heading")
-            for (var i = 0; i < json.length; i++) {
-                var div = document.createElement("div");
+    function appendHeadings(json) {
+        var main = document.getElementById("heading")
+        for (var i = 0; i < json.length; i++) {
+            var div = document.createElement("div");
                 div.innerHTML = json[i].name
                 main.appendChild(div)
             }
-        }
+    }
