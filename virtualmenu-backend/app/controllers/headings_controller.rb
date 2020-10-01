@@ -1,6 +1,6 @@
 class HeadingsController < ApplicationController
     def index
-        @headings = Heading.all
-        render json: @headings, include: [:food_items]
+        headings = Heading.all
+        render json: HeadingSerializer.new(headings)
     end
 end
