@@ -19,21 +19,36 @@ class App {
         APIConnector.headingsJson().then(this.appendHeadings)
     }
 
-    // Need to create a headings class. 
-    // Change this loop to a for each loop and create a new heading object each time
-    // Fix up the naming conventions 
-    appendHeadings(json) {
-        let data = json.data
-        var main = document.getElementById("container")
-        for (var i = 0; i < data.length; i++) {
-                var heading = document.createElement("p");
-                heading.innerHTML += `<h2 id = ${data[i].attributes.name}> ${data[i].attributes.name} </h2>`
-                main.appendChild(heading)
-        }
+    getAllFoodItems() {
+        APIConnector.headingsJson().then(this.appendFoodItems)
     }
 
 
+
+    appendHeadings(json) {
+        let data = json.data
+        let main = document.getElementById("container")
+
+        data.forEach(function(e) {
+            const heading = new Heading(e.attributes.name)
+            main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>` 
+            let i = e.attributes.food_items 
+            i.forEach(function(i){
+                main.innerHTML += `<p id = ${i.name} > ${i.name} </p>`
+            }) 
+        })  
+    }
+
 }
+
+class Heading {
+    constructor(name) {
+        this.name = name; 
+      }
+
+}
+
+
 
 
 // To Delete (old functions)
