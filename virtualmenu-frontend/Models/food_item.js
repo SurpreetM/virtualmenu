@@ -1,11 +1,13 @@
-class foodItem {
+class FoodItem {
     constructor(name, description, price, heading) {
         this.name = name; 
         this.description = description; 
-        this.price = price
-        this.heading = heading
+        this.price = price;
+        this.heading = heading;
       }
 
+
+      // Old to delete
       static populateMenu() {
         const data = getFoodItems()
         var main = document.getElementById("fooditems")
