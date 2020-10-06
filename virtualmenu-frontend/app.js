@@ -2,6 +2,7 @@ class App {
 
     run() {
         this.getMenu()
+        this.newHeading()
     } 
 
     getMenu() {
@@ -10,7 +11,7 @@ class App {
 
     appendMenu(json) {
         let data = json.data
-        let main = document.getElementById("container")
+        let main = document.getElementById("current-menu")
 
         data.forEach(function(h) {
             const heading = new Heading(h.attributes.name)
@@ -21,6 +22,15 @@ class App {
                 main.innerHTML += `<p id = ${f.name} > ${f.name} </p> <p style="text-align:left;"> ${f.description} <span style="float:right;"> $${f.price} </span> </p>`
             }) 
         })  
+    }
+
+    newHeading() {
+        let headingSubmit = document.getElementById('heading-form-submit');
+        headingSubmit.addEventListener('click', function(event) {
+            event.preventDefault()
+            Heading.addHeading()
+            
+        })
     }
 
 }

@@ -7,6 +7,14 @@ class APIConnector {
         )
     }
 
+    static postHeading(configurationObject) {
+        return fetch("http://localhost:3000/headings", configurationObject)
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+    }
+
+    
+
 }
 
 
