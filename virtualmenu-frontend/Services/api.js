@@ -12,9 +12,7 @@ class APIConnector {
         .then(resp => resp.json())
         .catch(error => console.log(error))
     }
-
     
-
 }
 
 

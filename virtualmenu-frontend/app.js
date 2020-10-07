@@ -23,8 +23,16 @@ class App {
             let i = h.attributes.food_items 
             if (i.length < 1) {
                 let deleteButton = document.createElement('button')
+                deleteButton.type = 'button'
                 deleteButton.textContent = "Delete"
+                deleteButton.id = `delete`
                 div.appendChild(deleteButton)
+                deleteButton.addEventListener ('click', function() {
+                    alert(`Are you sure you want to delete ${heading}`)
+                    // event.preventDefault()
+                    // const heading = new Heading(h.attributes.name)
+                    // heading.deleteHeading()
+                })
             } else {
                 i.forEach(function(i){
                     const f = new FoodItem(i.name, i.description, i.price, heading.name)
@@ -39,11 +47,12 @@ class App {
 
 
     newHeading() {
-        let headingSubmit = document.getElementById('heading-form-submit');
+        let headingSubmit = document.getElementById('heading-form-submit')
         headingSubmit.addEventListener('click', function(event) {
             event.preventDefault()
             Heading.addHeading()    
         })
     }
+
 
 }

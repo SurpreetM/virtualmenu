@@ -28,4 +28,24 @@ class Heading {
       } 
     }
 
+    deleteHeading() {
+      alert(`You have deleted ${heading.name}`)
+      //const configObj = {
+        //method: "DELETE",
+        //headers: {
+          //"Content-Type": "application/json",
+          //"Accept": "application/json"
+        //},
+          //body: JSON.stringify({
+          //"name": heading.name
+        //})
+      //}
+      //APIConnector.postHeading(configObj).then(function(object){
+        //alert(`You have delete ${heading.name}`)
+      //})
+
+    }
+
+    
+
 }
