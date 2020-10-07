@@ -15,12 +15,25 @@ class App {
 
         data.forEach(function(h) {
             const heading = new Heading(h.attributes.name)
-            main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2> <button type="button"> Delete Heading </button>`
+            let div = document.createElement('div')
+            div.id = heading.name
+            div.innerHTML = `<h2>${heading.name}</h2>`
+            main.appendChild(div)
+ 
             let i = h.attributes.food_items 
-            i.forEach(function(i){
-                const f = new FoodItem(i.name, i.description, i.price, heading.name)
-                main.innerHTML += `<p id = ${f.name} > ${f.name} </p> <p style="text-align:left;"> ${f.description} <span style="float:right;"> $${f.price} </span> </p>`
-            }) 
+            if (i.length < 1) {
+                let deleteButton = document.createElement('button')
+                deleteButton.textContent = "Delete"
+                div.appendChild(deleteButton)
+            } else {
+                i.forEach(function(i){
+                    const f = new FoodItem(i.name, i.description, i.price, heading.name)
+                    let p = document.createElement('p')
+                    p.id = f.name
+                    p.innerHTML += `${f.name} <p style="text-align:left;"> ${f.description} <span style="float:right;"> $${f.price} </span> </p>`
+                    div.appendChild(p)
+                })
+            }          
         })  
     }
 
