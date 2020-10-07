@@ -4,10 +4,10 @@ class Heading {
     }
 
     static addHeading() {
-      //if (form[0].value.isEmpty) {
-        //alert(`The name cannot be blank`)
-      //} else {
-          const form = document.getElementById("new-heading-form")
+      const form = document.getElementById("new-heading-form")
+      if (!form[0].value) {
+        alert(`The name cannot be blank`)
+      } else {
           const heading = new Heading(form[0].value)
           const configObj = {
             method: "POST",
@@ -25,7 +25,7 @@ class Heading {
             alert(`You are adding the new heading "${heading.name}"`)
             form.reset()
           })
-      //} 
+      } 
     }
 
 }

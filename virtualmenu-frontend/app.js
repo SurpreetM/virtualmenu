@@ -15,7 +15,7 @@ class App {
 
         data.forEach(function(h) {
             const heading = new Heading(h.attributes.name)
-            main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>` 
+            main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2> <button type="button"> Delete Heading </button>`
             let i = h.attributes.food_items 
             i.forEach(function(i){
                 const f = new FoodItem(i.name, i.description, i.price, heading.name)
@@ -24,12 +24,12 @@ class App {
         })  
     }
 
+
     newHeading() {
         let headingSubmit = document.getElementById('heading-form-submit');
         headingSubmit.addEventListener('click', function(event) {
             event.preventDefault()
-            Heading.addHeading()
-            
+            Heading.addHeading()    
         })
     }
 
