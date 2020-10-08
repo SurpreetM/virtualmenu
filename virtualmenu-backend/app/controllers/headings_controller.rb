@@ -14,6 +14,8 @@ class HeadingsController < ApplicationController
     end 
 
     def destroy
+        heading.destroy
+        render json: HeadingSerializer.new(heading)
     end
 
 
