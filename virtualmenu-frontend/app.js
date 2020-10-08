@@ -35,11 +35,11 @@ class App {
                 deleteButton.textContent = "Delete"
                 deleteButton.id = `delete${heading.name}`
                 div.appendChild(deleteButton)
-                //deleteButton.addEventListener ('click', function() {
-                    //event.preventDefault()
+                deleteButton.addEventListener ('click', function(event) {
+                    event.preventDefault()
                     //alert(`Are you sure you want to delete ${heading.name}`)
-                    
-                //})
+                    heading.deleteHeading()  
+                })
                 
             } else {
                 i.forEach(function(i){

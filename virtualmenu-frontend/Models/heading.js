@@ -6,7 +6,7 @@ class Heading {
 
     deleteHeading() {
 
-      //alert(`You have deleted ${this.name}`)
+      alert(`You have deleted ${this.name}`)
       const configObj = {
         method: "DELETE",
         headers: {
@@ -18,6 +18,8 @@ class Heading {
         })
       }
       
+      // we need to write this fetch request in full to also include the heading id in the url
+      // need to consider adding this to the constructor 
       APIConnector.postHeading(configObj).then(function(object){
          alert(`You have deleted ${this.name}`)
       })
