@@ -16,6 +16,7 @@ class HeadingsController < ApplicationController
     def destroy
         heading = Heading.find(params[:id])
         heading.destroy
+        # maybe better to redirect to index? 
         headings = Heading.all
         render json: HeadingSerializer.new(headings)
     end

@@ -22,10 +22,10 @@ class FoodItem {
         }
          
         alert(`You are deleting a the heading "${this.name}"`)
-        //let headingElement = document.getElementById(this.name)
-        //headingElement.remove()
+        let foodItemElement = document.getElementById(this.name)
+        foodItemElement.remove()
   
-        //APIConnector.deleteHeading(configObj, this.id)
+        APIConnector.deleteFoodItem(configObj, this.id)
   
       }
 

@@ -6,5 +6,15 @@ class FoodItemsController < ApplicationController
 
     end
 
+
+
+    def destroy
+        food_item = FoodItem.find(params[:id])
+        food_item.destroy
+        # maybe better to redirect to index? 
+        food_items = FoodItem.all
+        render json: FoodItemSerializer.new(food_items)
+    end
+
     
 end
