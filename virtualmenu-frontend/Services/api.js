@@ -13,6 +13,12 @@ class APIConnector {
         .catch(error => console.log(error))
     }
 
+    static deleteHeading(configurationObject, id) {
+        return fetch(`http://localhost:3000/headings/${id}`, configurationObject)
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+    }
+
     
     
 }

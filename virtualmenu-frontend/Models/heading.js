@@ -1,12 +1,11 @@
 class Heading {
-    constructor(name) {
-        this.name = name; 
-       
+    constructor(name, id) {
+        this.name = name;
+        this.id = id      
     }
 
     deleteHeading() {
-
-      alert(`You have deleted ${this.name}`)
+      
       const configObj = {
         method: "DELETE",
         headers: {
@@ -14,15 +13,16 @@ class Heading {
           "Accept": "application/json"
         },
           body: JSON.stringify({
-          "name": this.name
+          "name": this.name,
+          "id": this.id
         })
       }
-      
-      // we need to write this fetch request in full to also include the heading id in the url
-      // need to consider adding this to the constructor 
-      APIConnector.postHeading(configObj).then(function(object){
-         alert(`You have deleted ${this.name}`)
-      })
+       
+      alert(`You are deleting a the heading "${this.name}"`)
+      let headingElement = document.getElementById(this.name)
+      headingElement.remove()
+
+      APIConnector.deleteHeading(configObj, this.id)
 
     }
 

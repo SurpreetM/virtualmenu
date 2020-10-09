@@ -14,8 +14,10 @@ class HeadingsController < ApplicationController
     end 
 
     def destroy
+        heading = Heading.find(params[:id])
         heading.destroy
-        render json: HeadingSerializer.new(heading)
+        headings = Heading.all
+        render json: HeadingSerializer.new(headings)
     end
 
 
