@@ -1,26 +1,34 @@
 class FoodItem {
-    constructor(name, description, price, heading) {
+    constructor(name, description, price, heading, id) {
         this.name = name; 
         this.description = description; 
         this.price = price;
         this.heading = heading;
+        this.id = id;
       }
 
+      deleteFoodItem() {
 
-      // Old to delete
-      static populateMenu() {
-        const data = getFoodItems()
-        var main = document.getElementById("fooditems")
-        for (var i = 0; i < data.length; i++) {
-            var li = document.createElement("li");
-            li.innerHTML = data[i].name
-            main.appendChild(li)
+        const configObj = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+            body: JSON.stringify({
+            "name": this.name,
+            "id": this.id
+          })
         }
+         
+        alert(`You are deleting a the heading "${this.name}"`)
+        //let headingElement = document.getElementById(this.name)
+        //headingElement.remove()
+  
+        //APIConnector.deleteHeading(configObj, this.id)
+  
       }
 
-      static getFoodItems() {
-        fetch("http://localhost:3000/headings")
-        .then(res => res.json())
-        .then(results => results.data)
-      }
+
+      
 }

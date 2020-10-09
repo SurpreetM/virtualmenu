@@ -5,7 +5,7 @@ class Heading {
     }
 
     deleteHeading() {
-      
+
       const configObj = {
         method: "DELETE",
         headers: {
@@ -51,8 +51,5 @@ class Heading {
       } 
     }
 
-    
-
-    
 
 }

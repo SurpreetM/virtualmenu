@@ -19,6 +19,12 @@ class APIConnector {
         .catch(error => console.log(error))
     }
 
+    //static deleteFoodItem(configurationObject, id) {
+    //    return fetch(`http://localhost:3000/food_items/${id}`, configurationObject)
+    //    .then(resp => resp.json())
+    //    .catch(error => console.log(error))
+    //}
+
     
     
 }
