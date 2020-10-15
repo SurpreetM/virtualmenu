@@ -18,7 +18,7 @@ class Heading {
         })
       }
        
-      alert(`You are deleting a the heading "${this.name}"`)
+      alert(`You are deleting the heading "${this.name}"`)
       let headingElement = document.getElementById(this.name)
       headingElement.remove()
 

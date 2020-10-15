@@ -21,7 +21,7 @@ class FoodItem {
           })
         }
          
-        alert(`You are deleting a the heading "${this.name}"`)
+        alert(`You are deleting the food item "${this.name}"`)
         let foodItemElement = document.getElementById(this.name)
         foodItemElement.remove()
   
