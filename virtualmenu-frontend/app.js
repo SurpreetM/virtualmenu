@@ -16,12 +16,14 @@ class App {
         let newFoodItemForm = document.getElementById("heading-options")
 
         data.forEach(function(h) {
-            var heading = new Heading(h.attributes.name, h.id)
+            let heading = new Heading(h.attributes.name, h.id)
+            let headingSection = document.createElement('div')
+            heading.appendHeading(headingSection, main)
 
-            let div = document.createElement('div')
-            div.id = heading.name
-            div.innerHTML = `<h2>${heading.name}</h2>`
-            main.appendChild(div)
+            
+            //headingSection.id = heading.name
+            //headingSection.innerHTML = `<h2>${heading.name}</h2>`
+            //main.appendChild(headingSection)
 
             let headingOption = document.createElement('option')
             headingOption.id = heading.name
@@ -31,20 +33,21 @@ class App {
  
             let i = h.attributes.food_items 
             if (i.length < 1) {
-                let deleteButton = document.createElement('button')
-                deleteButton.type = 'button'
-                deleteButton.textContent = "Delete"
-                deleteButton.id = `delete${heading.name}`
-                div.appendChild(deleteButton)
-                deleteButton.addEventListener ('click', function(event) {
-                    event.preventDefault()
-                    heading.deleteHeading()
-                })  
+                heading.appendDeleteButton(headingSection)
+                //let deleteButton = document.createElement('button')
+                //deleteButton.type = 'button'
+                //deleteButton.textContent = "Delete"
+                //deleteButton.id = `delete${heading.name}`
+                //headingSection.appendChild(deleteButton)
+                //deleteButton.addEventListener ('click', function(event) {
+                //    event.preventDefault()
+                //    heading.deleteHeading()
+                //})  
                 
             } else {
                 i.forEach(function(i) {
                     const foodItem = new FoodItem(i.name, i.description, i.price, heading.name, i.id)
-                    foodItem.appendFoodItem(div)
+                    foodItem.appendFoodItem(headingSection)
                     foodItem.appendDeleteButton()
                     //let p = document.createElement('p')
                     //p.id = foodItem.name
@@ -81,7 +84,7 @@ class App {
             
             event.preventDefault()
             //alert('I was clicked')
-            FoodItem.addFoodItem()
+            FoodItem.newFoodItem()
             
             
         })

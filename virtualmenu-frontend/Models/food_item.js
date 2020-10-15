@@ -29,7 +29,7 @@ class FoodItem {
   
       }
 
-      static addFoodItem() {
+      static newFoodItem() {
         let name = document.getElementById("new-food-item-name").value
         let description = document.getElementById("new-food-item-description").value
         let price = document.getElementById("new-food-item-price").value

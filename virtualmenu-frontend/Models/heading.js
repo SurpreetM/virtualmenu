@@ -44,11 +44,39 @@ class Heading {
           }
           APIConnector.postHeading(configObj).then(function(object){
             let main = document.getElementById("current-menu") 
-            main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>`
+            let newHeadingSection = document.createElement("div")
             alert(`You are adding the new heading "${heading.name}"`)
-            form.reset()
+            heading.appendHeading(newHeadingSection, main)
+            heading.appendDeleteButton(newHeadingSection)
+            //main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>`
+            //alert(`You are adding the new heading "${heading.name}"`)
+            document.getElementById("new-heading-form").reset()
           })
       } 
+    }
+
+    appendHeading(div, parentSection) {
+      div.id = this.name
+      div.innerHTML = `<h2>${this.name}</h2>`
+      parentSection.appendChild(div)
+    }
+
+    appendDeleteButton(headingSection) {
+      let deleteButton = document.createElement('button')
+      deleteButton.type = 'button'
+      deleteButton.textContent = "Delete Heading"
+      deleteButton.id = `delete${this.name}`
+      headingSection.appendChild(deleteButton)
+
+      let heading = this
+      deleteButton.addEventListener ('click', function(event) {
+          event.preventDefault()
+          heading.deleteHeading()
+      }) 
+    }
+
+    newItemFormOptions() {
+
     }
 
 
