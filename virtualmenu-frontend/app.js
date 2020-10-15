@@ -44,21 +44,23 @@ class App {
             } else {
                 i.forEach(function(i) {
                     const foodItem = new FoodItem(i.name, i.description, i.price, heading.name, i.id)
-                    let p = document.createElement('p')
-                    p.id = foodItem.name
-                    p.innerHTML += `${foodItem.name} <p style="text-align:left;"> ${foodItem.description} <span style="float:right;"> $${foodItem.price} </span> </p>`
-                    div.appendChild(p)
+                    foodItem.appendFoodItem(div)
+                    foodItem.appendDeleteButton()
+                    //let p = document.createElement('p')
+                    //p.id = foodItem.name
+                    //p.innerHTML += `${foodItem.name} <p style="text-align:left;"> ${foodItem.description} <span style="float:right;"> $${foodItem.price} </span> </p>`
+                    //div.appendChild(p)
                     
-                    let deleteFood = document.createElement('button')
-                    p.appendChild(deleteFood)
-                    deleteFood.type = 'button'
-                    deleteFood.textContent = "Delete"
-                    deleteFood.id = `delete${foodItem.name}`
+                    //let deleteFood = document.createElement('button')
+                    //p.appendChild(deleteFood)
+                    //deleteFood.type = 'button'
+                    //deleteFood.textContent = "Delete"
+                    //deleteFood.id = `delete${foodItem.name}`
                     
-                    deleteFood.addEventListener ('click', function(event) {
-                        event.preventDefault()
-                        foodItem.deleteFoodItem()
-                    })  
+                    //deleteFood.addEventListener ('click', function(event) {
+                    //    event.preventDefault()
+                    //   foodItem.deleteFoodItem()
+                    //})  
                 })
             }          
         })  
@@ -78,7 +80,9 @@ class App {
         foodItemSubmit.addEventListener('click', function(event) {
             
             event.preventDefault()
-            alert('I was clicked')
+            //alert('I was clicked')
+            FoodItem.addFoodItem()
+            
             
         })
     }

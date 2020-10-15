@@ -18,22 +18,35 @@
 
     <div class="form" id="heading-form">
         <h2>Add a New Heading</h2>
-        <form id="new-heading-form" name="heading-form">
+        <form id="new-heading-form">
             <label>Name:</label>
-            <input type="text" name="heading-name" placeholder="e.g. 'Appetizers'"> 
+            <input type="text" id="new-heading-name" placeholder="e.g. 'Appetizers'"> 
+            <br>
+            <br>
             <input id="heading-form-submit" type="submit" value="Add Heading">
         </form>
-
+    </div>
+    
+    <div class="form" id="food-item-form">
         <h2>Add a New Food Item</h2>
-        <form id="new-food_item-form" name="food-item-form">
+        <form id="new-food_item-form">
             <label>Name:</label>
-            <input type="text" name="food-item-name" placeholder="e.g. 'Grilled Salmon'"> 
+            <input type="text" id="new-food-item-name" placeholder="e.g. 'Grilled Salmon'"> 
+
             <label>Select Heading:</label>
             <select name="headings" id="heading-options"> 
             </select>
+            <br>
+            <br> 
+            <label>Price($)</label>
+            <input type="number" id="new-food-item-price" placeholder="12">
+
+            <label>Description:</label>
+            <input type="text" id="new-food-item-description" placeholder="e.g. 'Seared Salmon with Lemon-Herb Butter Sauce, served over Wild Rice Pilaf and Vegetables'">
+            <br>
+            <br>
             <input id="food-item-form-submit" type="submit" value="Add Food Item">
         </form>
-
     </div>
     
     

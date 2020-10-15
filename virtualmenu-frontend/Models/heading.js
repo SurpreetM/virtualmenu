@@ -27,11 +27,11 @@ class Heading {
     }
 
     static addHeading() {
-      const form = document.getElementById("new-heading-form")
-      if (!form[0].value) {
+      const headingName = document.getElementById("new-heading-name").value
+      if (!headingName) {
         alert(`The name cannot be blank`)
       } else {
-          const heading = new Heading(form[0].value)
+          const heading = new Heading(headingName)
           const configObj = {
             method: "POST",
             headers: {
