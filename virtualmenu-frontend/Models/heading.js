@@ -73,6 +73,7 @@ class Heading {
       deleteButton.type = 'button'
       deleteButton.textContent = "Delete Heading"
       deleteButton.id = `delete${this.name}`
+      //deleteButton.class = 'delete'
       headingSection.appendChild(deleteButton)
 
       let heading = this

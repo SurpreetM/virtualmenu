@@ -67,7 +67,7 @@ class FoodItem {
         p.id = this.name
         p.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
         heading.appendChild(p)
-        // need to add something here to remove the delete button 
+        // need to add something here to remove the delete button from the heading
       }
 
       appendDeleteButton() {
