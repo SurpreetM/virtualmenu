@@ -46,6 +46,7 @@ class Heading {
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
             alert(`You are adding the new heading "${heading.name}"`)
+            
             heading.appendHeading(newHeadingSection, main)
             heading.appendDeleteButton(newHeadingSection)
             //main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>`
@@ -59,6 +60,12 @@ class Heading {
       div.id = this.name
       div.innerHTML = `<h2>${this.name}</h2>`
       parentSection.appendChild(div)
+      // add heading to new food item form (drop down option)
+      let headingOption = document.createElement('option')
+      let newFoodItemForm = document.getElementById("heading-options")
+            headingOption.id = this.name
+            headingOption.innerHTML = this.name
+            newFoodItemForm.appendChild(headingOption)
     }
 
     appendDeleteButton(headingSection) {
@@ -75,8 +82,14 @@ class Heading {
       }) 
     }
 
-    newItemFormOptions() {
+    
 
+    static newHeading() {
+      let headingSubmit = document.getElementById('heading-form-submit')
+      headingSubmit.addEventListener('click', function(event) {
+          event.preventDefault()
+          Heading.addHeading()    
+      })
     }
 
 

@@ -2,8 +2,10 @@ class App {
 
     run() {
         this.getMenu()
-        this.newHeading()
-        this.newFoodItem()
+        //this.newHeading()
+        Heading.newHeading()
+        //this.newFoodItem()
+        FoodItem.newFoodItem()
     } 
 
     getMenu() {
@@ -13,7 +15,7 @@ class App {
     appendMenu(json) {
         let data = json.data
         let main = document.getElementById("current-menu")
-        let newFoodItemForm = document.getElementById("heading-options")
+        //let newFoodItemForm = document.getElementById("heading-options")
 
         data.forEach(function(h) {
             let heading = new Heading(h.attributes.name, h.id)
@@ -25,10 +27,10 @@ class App {
             //headingSection.innerHTML = `<h2>${heading.name}</h2>`
             //main.appendChild(headingSection)
 
-            let headingOption = document.createElement('option')
-            headingOption.id = heading.name
-            headingOption.innerHTML = heading.name
-            newFoodItemForm.appendChild(headingOption)
+            //let headingOption = document.createElement('option')
+            //headingOption.id = heading.name
+            //headingOption.innerHTML = heading.name
+            //newFoodItemForm.appendChild(headingOption)
 
  
             let i = h.attributes.food_items 
