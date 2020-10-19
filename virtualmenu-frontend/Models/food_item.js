@@ -7,67 +7,67 @@ class FoodItem {
         this.id = id;
       }
 
-      deleteFoodItem() {
+      // STATIC METHODS
 
-        const configObj = {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-            body: JSON.stringify({
-            "name": this.name,
-            "id": this.id
-          })
-        }
-         
-        alert(`You are deleting the food item "${this.name}"`)
-        let foodItemElement = document.getElementById(this.name)
-        foodItemElement.remove()
-
-        APIConnector.deleteFoodItem(configObj, this.id)
-  
-      }
-
-      static addFoodItem() {
-
-        let name = document.getElementById("new-food-item-name").value
-        let description = document.getElementById("new-food-item-description").value
-        let price = document.getElementById("new-food-item-price").value
-        let heading = document.getElementById("heading-options").value
-        
-        let foodItem = new FoodItem(name, description, price, heading)
-
-        const configObj = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-            body: JSON.stringify({
-            "name": foodItem.name,
-            "description": foodItem.description,
-            "price": foodItem.price, 
-            "heading": foodItem.heading
-          })
-        }
-        APIConnector.postFoodItem(configObj).then(function(object) {
-          let headingSection = document.getElementById(`${foodItem.heading}`)
-          foodItem.appendFoodItem(headingSection)
-          foodItem.appendDeleteButton()
-          document.getElementById("new-food-item-form").reset()
-          alert(`you are adding ${foodItem.name} to ${headingSection.id}`)
+      static newFoodItem() {
+        let foodItemSubmit = document.getElementById('food-item-form-submit')
+        foodItemSubmit.addEventListener('click', function(event) {
+            event.preventDefault()
+            FoodItem.addFoodItem()  
         })
-    }  
+     }
+
+
+     static addFoodItem() {
+      let name = document.getElementById("new-food-item-name").value
+      let description = document.getElementById("new-food-item-description").value
+      let price = document.getElementById("new-food-item-price").value
+      let heading = document.getElementById("heading-options").value
+
+
+      const configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+          body: JSON.stringify({
+          "name": name,
+          "description": description,
+          "price": price, 
+          "heading": heading
+        })
+      }
+      APIConnector.postFoodItem(configObj).then(function(object) {
+        console.log(object)
+        let headingSection = document.getElementById(`${heading}`)
+        let headingDeleteButton = document.getElementById(`delete${heading}`)
+
+        let objectName = object.data.attributes.name
+        let objectDescription = object.data.attributes.description
+        let objectPrice = object.data.attributes.price
+        let objectHeading = object.data.attributes.heading.name
+        let objectId = object.data.id
+
+
+        let newFoodItem = new FoodItem (objectName, objectDescription, objectPrice, objectHeading, objectId)
+
+        newFoodItem.appendFoodItem(headingSection)
+        newFoodItem.appendDeleteButton()
+        headingDeleteButton.remove()
         
+        document.getElementById("new-food-item-form").reset()
+        alert(`you are adding ${object.data.attributes.name} to ${object.data.attributes.heading.name}`)
+      })
+    }  
       
+      // INSTANCE METHODS 
 
       appendFoodItem(heading) {
         let p = document.createElement('p')
         p.id = this.name
         p.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
         heading.appendChild(p)
-        // need to add something here to remove the delete button from the heading
       }
 
       appendDeleteButton() {
@@ -83,21 +83,32 @@ class FoodItem {
         deleteFood.addEventListener ('click', function(event) {
           event.preventDefault()
           foodItem.deleteFoodItem()
-          //alert(`This del button is working ${this.id}`)
+          
         }) 
 
       }
 
-      static newFoodItem() {
-        let foodItemSubmit = document.getElementById('food-item-form-submit')
-        foodItemSubmit.addEventListener('click', function(event) {
-            event.preventDefault()
-            FoodItem.addFoodItem()  
+      deleteFoodItem() {
+        const configObj = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+            body: JSON.stringify({
+            "name": this.name,
+            "id": this.id
+          })
+        }        
+        alert(`You are deleting the food item "${this.name}"`)
+        let foodItemElement = document.getElementById(this.name)
+        // Need to figure out how to add back the delete button to the heading section if there are not items
+        //let headingSection = document.getElementById(`${this.heading}`)
+        
+        APIConnector.deleteFoodItem(configObj, this.id).then(function(obj){
+          foodItemElement.remove()
         })
-    }
+      }
 
 
-
-
-      
 }

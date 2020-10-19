@@ -4,34 +4,23 @@ class Heading {
         this.id = id      
     }
 
-    deleteHeading() {
+    // STATIC METHODS
 
-      const configObj = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-          body: JSON.stringify({
-          "name": this.name,
-          "id": this.id
-        })
-      }
-       
-      alert(`You are deleting the heading "${this.name}"`)
-      let headingElement = document.getElementById(this.name)
-      headingElement.remove()
-
-      APIConnector.deleteHeading(configObj, this.id)
-
+    static newHeading() {
+      let headingSubmit = document.getElementById('heading-form-submit')
+      headingSubmit.addEventListener('click', function(event) {
+          event.preventDefault()
+          Heading.addHeading()    
+      })
     }
+
 
     static addHeading() {
       const headingName = document.getElementById("new-heading-name").value
       if (!headingName) {
         alert(`The name cannot be blank`)
       } else {
-          const heading = new Heading(headingName)
+          //const heading = new Heading(headingName)
           const configObj = {
             method: "POST",
             headers: {
@@ -39,22 +28,23 @@ class Heading {
               "Accept": "application/json"
             },
               body: JSON.stringify({
-              "name": heading.name
+              "name": headingName
             })
           }
           APIConnector.postHeading(configObj).then(function(object){
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
-            alert(`You are adding the new heading "${heading.name}"`)
-            
-            heading.appendHeading(newHeadingSection, main)
-            heading.appendDeleteButton(newHeadingSection)
-            //main.innerHTML += `<div id = ${heading.name} > <h2> ${heading.name} </h2>`
-            //alert(`You are adding the new heading "${heading.name}"`)
+            console.log(object)
+            alert(`You are adding the new heading "${object.data.attributes.name}"`)
+            let newHeading = new Heading(object.data.attributes.name, object.data.id) 
+            newHeading.appendHeading(newHeadingSection, main)
+            newHeading.appendDeleteButton(newHeadingSection)
             document.getElementById("new-heading-form").reset()
           })
       } 
     }
+
+    // INSTANCE METHODS
 
     appendHeading(div, parentSection) {
       div.id = this.name
@@ -73,7 +63,6 @@ class Heading {
       deleteButton.type = 'button'
       deleteButton.textContent = "Delete Heading"
       deleteButton.id = `delete${this.name}`
-      //deleteButton.class = 'delete'
       headingSection.appendChild(deleteButton)
 
       let heading = this
@@ -83,15 +72,21 @@ class Heading {
       }) 
     }
 
-    
-
-    static newHeading() {
-      let headingSubmit = document.getElementById('heading-form-submit')
-      headingSubmit.addEventListener('click', function(event) {
-          event.preventDefault()
-          Heading.addHeading()    
-      })
+    deleteHeading() {
+      const configObj = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+          body: JSON.stringify({
+          "name": this.name,
+          "id": this.id
+        })
+      }  
+      alert(`You are deleting the heading "${this.name}"`)
+      let headingElement = document.getElementById(this.name)
+      headingElement.remove()
+      APIConnector.deleteHeading(configObj, this.id)
     }
-
-
 }

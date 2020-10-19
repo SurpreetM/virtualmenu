@@ -13,6 +13,7 @@ class FoodItemsController < ApplicationController
         food_item.price = params[:price]
         food_item.heading_id = heading.id
         food_item.save
+        render json: FoodItemSerializer.new(food_item)
     end 
 
 
