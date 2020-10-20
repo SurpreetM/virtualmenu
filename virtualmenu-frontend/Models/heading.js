@@ -16,11 +16,10 @@ class Heading {
 
 
     static addHeading() {
-      const headingName = document.getElementById("new-heading-name").value
-      if (!headingName) {
+      const nameInput = document.getElementById("new-heading-name").value
+      if (!nameInput) {
         alert(`The name cannot be blank`)
       } else {
-          //const heading = new Heading(headingName)
           const configObj = {
             method: "POST",
             headers: {
@@ -28,15 +27,17 @@ class Heading {
               "Accept": "application/json"
             },
               body: JSON.stringify({
-              "name": headingName
+              "name": nameInput
             })
           }
           APIConnector.postHeading(configObj).then(function(object){
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
             console.log(object)
-            alert(`You are adding the new heading "${object.data.attributes.name}"`)
-            let newHeading = new Heading(object.data.attributes.name, object.data.id) 
+            let objectName = object.data.attributes.name
+            let objectId = object.data.id
+            alert(`You are adding the new heading "${objectName}"`)
+            let newHeading = new Heading(objectName, objectId) 
             newHeading.appendHeading(newHeadingSection, main)
             newHeading.appendDeleteButton(newHeadingSection)
             document.getElementById("new-heading-form").reset()
@@ -59,6 +60,7 @@ class Heading {
     }
 
     appendDeleteButton(headingSection) {
+      
       let deleteButton = document.createElement('button')
       deleteButton.type = 'button'
       deleteButton.textContent = "Delete Heading"
@@ -88,5 +90,10 @@ class Heading {
       let headingElement = document.getElementById(this.name)
       headingElement.remove()
       APIConnector.deleteHeading(configObj, this.id)
+    }
+
+    get foodItemsCount() {
+      let foodItems = document.querySelectorAll(`${this.name}`)
+      return foodItems.length
     }
 }

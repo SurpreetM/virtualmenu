@@ -19,10 +19,10 @@ class FoodItem {
 
 
      static addFoodItem() {
-      let name = document.getElementById("new-food-item-name").value
-      let description = document.getElementById("new-food-item-description").value
-      let price = document.getElementById("new-food-item-price").value
-      let heading = document.getElementById("heading-options").value
+      let nameInput = document.getElementById("new-food-item-name").value
+      let descriptionInput = document.getElementById("new-food-item-description").value
+      let priceInput = document.getElementById("new-food-item-price").value
+      let headingInput = document.getElementById("heading-options").value
 
 
       const configObj = {
@@ -32,16 +32,16 @@ class FoodItem {
           "Accept": "application/json"
         },
           body: JSON.stringify({
-          "name": name,
-          "description": description,
-          "price": price, 
-          "heading": heading
+          "name": nameInput,
+          "description": descriptionInput,
+          "price": priceInput, 
+          "heading": headingInput
         })
       }
       APIConnector.postFoodItem(configObj).then(function(object) {
         console.log(object)
-        let headingSection = document.getElementById(`${heading}`)
-        let headingDeleteButton = document.getElementById(`delete${heading}`)
+        let headingSection = document.getElementById(`${headingInput}`)
+        let headingDeleteButton = document.getElementById(`delete${headingInput}`)
 
         let objectName = object.data.attributes.name
         let objectDescription = object.data.attributes.description
@@ -54,10 +54,12 @@ class FoodItem {
 
         newFoodItem.appendFoodItem(headingSection)
         newFoodItem.appendDeleteButton()
-        headingDeleteButton.remove()
+        if (headingDeleteButton){
+          headingDeleteButton.remove()
+        }
         
         document.getElementById("new-food-item-form").reset()
-        alert(`you are adding ${object.data.attributes.name} to ${object.data.attributes.heading.name}`)
+        alert(`you are adding ${objectName} to ${objectHeading}`)
       })
     }  
       
@@ -65,13 +67,13 @@ class FoodItem {
 
       appendFoodItem(heading) {
         let p = document.createElement('p')
-        p.id = this.name
+        p.id = `${this.heading}.${this.name}`
         p.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
         heading.appendChild(p)
       }
 
       appendDeleteButton() {
-        let item = document.getElementById(this.name)
+        let item = document.getElementById(`${this.heading}.${this.name}`)
         let deleteFood = document.createElement('button')
         item.appendChild(deleteFood)
         deleteFood.type = 'button'
@@ -97,18 +99,28 @@ class FoodItem {
           },
             body: JSON.stringify({
             "name": this.name,
-            "id": this.id
+            "id": this.id,
+            "heading": this.heading
           })
         }        
         alert(`You are deleting the food item "${this.name}"`)
-        let foodItemElement = document.getElementById(this.name)
-        // Need to figure out how to add back the delete button to the heading section if there are not items
-        //let headingSection = document.getElementById(`${this.heading}`)
+        let foodItemElement = document.getElementById(`${this.heading}.${this.name}`)
+        let headingSection = document.getElementById(`${this.heading}`)
         
         APIConnector.deleteFoodItem(configObj, this.id).then(function(obj){
+          console.log(obj)
           foodItemElement.remove()
+          // rendered the removed food item heading following the back end foodItem destroy function
+          // create a new heading object in javascript to allow us to run the appendDeleteButton function 
+          let heading = new Heading(obj.data.attributes.name, obj.data.attributes.id)
+          if (obj.data.attributes.food_items = []) {
+            heading.appendDeleteButton(headingSection)
+          }
         })
       }
+
+
+      
 
 
 }

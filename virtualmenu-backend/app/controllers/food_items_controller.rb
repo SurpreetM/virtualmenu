@@ -20,10 +20,13 @@ class FoodItemsController < ApplicationController
 
     def destroy
         food_item = FoodItem.find(params[:id])
+        heading = food_item.heading
+        byebug
         food_item.destroy
-        # maybe better to redirect to index? 
-        food_items = FoodItem.all
-        render json: FoodItemSerializer.new(food_items)
+        # rendering the deleted food item's heading here to check whether to add delete button
+        # render json: HeadingSerializer.new(heading)
+        headings = Heading.all
+        render json: HeadingSerializer.new(heading)
     end
 
     

@@ -21,5 +21,10 @@ class HeadingsController < ApplicationController
         render json: HeadingSerializer.new(headings)
     end
 
+    def show
+        heading = Heading.find(params[:id])
+        render json: HeadingSerializer.new(heading)
+    end 
+
 
 end
