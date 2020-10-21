@@ -8,9 +8,17 @@ class HeadingsController < ApplicationController
     def create
         heading = Heading.new
         heading.name = params[:heading][:name]
-        heading.save
+        if heading.valid? 
+            heading.save
+            render json: HeadingSerializer.new(heading)
+        else   
+            #heading.errors.full_messages
+            render json: {errors: heading.errors.full_messages}, status: :not_acceptable 
+        end 
+        
+        
         # Not sure if we need this
-        render json: HeadingSerializer.new(heading)
+        
     end 
 
     def destroy

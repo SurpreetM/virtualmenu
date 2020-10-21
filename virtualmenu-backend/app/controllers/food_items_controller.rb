@@ -12,8 +12,12 @@ class FoodItemsController < ApplicationController
         food_item.description = params[:description]
         food_item.price = params[:price]
         food_item.heading_id = heading.id
-        food_item.save
-        render json: FoodItemSerializer.new(food_item)
+        if food_item.valid?
+            food_item.save
+            render json: FoodItemSerializer.new(food_item)
+        else 
+            render json: {errors: food_item.errors.full_messages}, status: :not_acceptable 
+        end 
     end 
 
 

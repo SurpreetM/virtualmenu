@@ -40,26 +40,31 @@ class FoodItem {
       }
       APIConnector.postFoodItem(configObj).then(function(object) {
         console.log(object)
-        let headingSection = document.getElementById(`${headingInput}`)
-        let headingDeleteButton = document.getElementById(`delete${headingInput}`)
-
-        let objectName = object.data.attributes.name
-        let objectDescription = object.data.attributes.description
-        let objectPrice = object.data.attributes.price
-        let objectHeading = object.data.attributes.heading.name
-        let objectId = object.data.id
-
-
-        let newFoodItem = new FoodItem (objectName, objectDescription, objectPrice, objectHeading, objectId)
-
-        newFoodItem.appendFoodItem(headingSection)
-        newFoodItem.appendDeleteButton()
-        if (headingDeleteButton){
-          headingDeleteButton.remove()
+        if (object.errors) {
+          alert(`${object.errors[0]}`)
+        } else {
+            let headingSection = document.getElementById(`${headingInput}`)
+            let headingDeleteButton = document.getElementById(`delete${headingInput}`)
+  
+            let objectName = object.data.attributes.name
+            let objectDescription = object.data.attributes.description
+            let objectPrice = object.data.attributes.price
+            let objectHeading = object.data.attributes.heading.name
+            let objectId = object.data.id
+  
+  
+            let newFoodItem = new FoodItem (objectName, objectDescription, objectPrice, objectHeading, objectId)
+  
+            newFoodItem.appendFoodItem(headingSection)
+            newFoodItem.appendDeleteButton()
+            if (headingDeleteButton){
+              headingDeleteButton.remove()
+            }
+          
+            document.getElementById("new-food-item-form").reset()
+            alert(`you are adding ${objectName} to ${objectHeading}`)
         }
-        
-        document.getElementById("new-food-item-form").reset()
-        alert(`you are adding ${objectName} to ${objectHeading}`)
+      
       })
     }  
       
@@ -110,7 +115,6 @@ class FoodItem {
         APIConnector.deleteFoodItem(configObj, this.id).then(function(object){
           console.log(object)
           foodItemElement.remove()
-          // console.log(object.food_items.length == 0)
           // rendered the removed food item's heading following the back end foodItem destroy function
           // create a new heading object in javascript to allow us to run the appendDeleteButton function 
           let heading = new Heading(object.name, object.id)

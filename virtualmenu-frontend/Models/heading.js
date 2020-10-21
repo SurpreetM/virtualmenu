@@ -17,9 +17,9 @@ class Heading {
 
     static addHeading() {
       const nameInput = document.getElementById("new-heading-name").value
-      if (!nameInput) {
-        alert(`The name cannot be blank`)
-      } else {
+      //if (!nameInput) {
+        //alert(`The name cannot be blank`)
+      //} else {
           const configObj = {
             method: "POST",
             headers: {
@@ -34,15 +34,21 @@ class Heading {
             console.log(object)
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
-            let objectName = object.data.attributes.name
-            let objectId = object.data.id
-            alert(`You are adding the new heading "${objectName}"`)
-            let newHeading = new Heading(objectName, objectId) 
-            newHeading.appendHeading(newHeadingSection, main)
-            newHeading.appendDeleteButton(newHeadingSection)
-            document.getElementById("new-heading-form").reset()
+            if (object.errors) {
+              alert(object.errors)
+            } else {
+              let objectName = object.data.attributes.name
+              let objectId = object.data.id
+              alert(`You are adding the new heading "${objectName}"`)
+              let newHeading = new Heading(objectName, objectId) 
+              newHeading.appendHeading(newHeadingSection, main)
+              newHeading.appendDeleteButton(newHeadingSection)
+              document.getElementById("new-heading-form").reset()
+            }
+
+            
           })
-      } 
+      //} 
     }
 
     // INSTANCE METHODS
