@@ -107,13 +107,14 @@ class FoodItem {
         let foodItemElement = document.getElementById(`${this.heading}.${this.name}`)
         let headingSection = document.getElementById(`${this.heading}`)
         
-        APIConnector.deleteFoodItem(configObj, this.id).then(function(obj){
-          console.log(obj)
+        APIConnector.deleteFoodItem(configObj, this.id).then(function(object){
+          console.log(object)
           foodItemElement.remove()
-          // rendered the removed food item heading following the back end foodItem destroy function
+          // console.log(object.food_items.length == 0)
+          // rendered the removed food item's heading following the back end foodItem destroy function
           // create a new heading object in javascript to allow us to run the appendDeleteButton function 
-          let heading = new Heading(obj.data.attributes.name, obj.data.attributes.id)
-          if (obj.data.attributes.food_items = []) {
+          let heading = new Heading(object.name, object.id)
+          if (object.food_items.length == 0) {
             heading.appendDeleteButton(headingSection)
           }
         })

@@ -31,9 +31,9 @@ class Heading {
             })
           }
           APIConnector.postHeading(configObj).then(function(object){
+            console.log(object)
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
-            console.log(object)
             let objectName = object.data.attributes.name
             let objectId = object.data.id
             alert(`You are adding the new heading "${objectName}"`)
@@ -92,8 +92,4 @@ class Heading {
       APIConnector.deleteHeading(configObj, this.id)
     }
 
-    get foodItemsCount() {
-      let foodItems = document.querySelectorAll(`${this.name}`)
-      return foodItems.length
-    }
 }

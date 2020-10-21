@@ -21,12 +21,10 @@ class FoodItemsController < ApplicationController
     def destroy
         food_item = FoodItem.find(params[:id])
         heading = food_item.heading
-        byebug
         food_item.destroy
-        # rendering the deleted food item's heading here to check whether to add delete button
-        # render json: HeadingSerializer.new(heading)
-        headings = Heading.all
-        render json: HeadingSerializer.new(heading)
+        # rendering the deleted food item's heading here to check whether to add delete button. 
+        # this doesn't seem to include the array of food items when it is rendered from the serializer. 
+        render json: heading, include: [:food_items]
     end
 
     
