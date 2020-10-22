@@ -1,8 +1,8 @@
 class FoodItemsController < ApplicationController
-    def index
-        food_items = FoodItem.all
+    #def index
+    #    food_items = FoodItem.all
         #render json: FoodItemSerializer.new(food_items)
-    end
+    #end
 
     def create
         heading = Heading.find_by(name: params[:heading])  
