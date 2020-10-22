@@ -17,9 +17,6 @@ class Heading {
 
     static addHeading() {
       const nameInput = document.getElementById("new-heading-name").value
-      //if (!nameInput) {
-        //alert(`The name cannot be blank`)
-      //} else {
           const configObj = {
             method: "POST",
             headers: {
@@ -47,8 +44,7 @@ class Heading {
             }
 
             
-          })
-      //} 
+          }) 
     }
 
     // INSTANCE METHODS
@@ -57,7 +53,7 @@ class Heading {
       div.id = this.name
       div.innerHTML = `<h2>${this.name}</h2>`
       parentSection.appendChild(div)
-      // add heading to new food item form (drop down option)
+      // add heading to new food item form (drop down options)
       let headingOption = document.createElement('option')
       let newFoodItemForm = document.getElementById("heading-options")
             headingOption.id = this.name
@@ -66,7 +62,6 @@ class Heading {
     }
 
     appendDeleteButton(headingSection) {
-      
       let deleteButton = document.createElement('button')
       deleteButton.type = 'button'
       deleteButton.textContent = "Delete Heading"
@@ -94,8 +89,11 @@ class Heading {
       }  
       alert(`You are deleting the heading "${this.name}"`)
       let headingElement = document.getElementById(this.name)
-      headingElement.remove()
-      APIConnector.deleteHeading(configObj, this.id)
+    
+      APIConnector.deleteHeading(configObj, this.id).then(function(object) {
+        console.log(object)
+        headingElement.remove()
+      })
     }
 
 }

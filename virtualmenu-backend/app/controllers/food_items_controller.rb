@@ -1,17 +1,16 @@
 class FoodItemsController < ApplicationController
     def index
         food_items = FoodItem.all
-        render json: FoodItemSerializer.new(food_items)
-        #render json: food_items, include: [:heading]
+        #render json: FoodItemSerializer.new(food_items)
     end
 
     def create
+        heading = Heading.find_by(name: params[:heading])  
         food_item = FoodItem.new
-        heading = Heading.find_by(name: params[:heading])
         food_item.name = params[:name]
         food_item.description = params[:description]
         food_item.price = params[:price]
-        food_item.heading_id = heading.id
+        food_item.heading = heading
         if food_item.valid?
             food_item.save
             render json: FoodItemSerializer.new(food_item)

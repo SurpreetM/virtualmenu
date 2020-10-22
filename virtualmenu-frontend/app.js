@@ -2,9 +2,7 @@ class App {
 
     run() {
         this.getMenu()
-        //this.newHeading()
         Heading.newHeading()
-        //this.newFoodItem()
         FoodItem.newFoodItem()
     } 
 
@@ -72,25 +70,7 @@ class App {
     }
 
 
-     newHeading() {
-        let headingSubmit = document.getElementById('heading-form-submit')
-        headingSubmit.addEventListener('click', function(event) {
-            event.preventDefault()
-            Heading.addHeading()    
-        })
-    }
-
-    newFoodItem() {
-        let foodItemSubmit = document.getElementById('food-item-form-submit')
-        foodItemSubmit.addEventListener('click', function(event) {
-            
-            event.preventDefault()
-            //alert('I was clicked')
-            FoodItem.newFoodItem()
-            
-            
-        })
-    }
+     
 
 
 }

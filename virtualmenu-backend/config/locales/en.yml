@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    models:
+    attributes:
+      heading:
+        name: "Heading"
+      food_item:
+        name: "Food Item"
