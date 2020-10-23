@@ -7,13 +7,17 @@ class HeadingsController < ApplicationController
 
     def create
         heading = Heading.new
-        heading.name = params[:heading][:name]
+        heading.name = sanitize_name(params[:heading][:name])
         if heading.valid? 
             heading.save
             render json: HeadingSerializer.new(heading)
         else   
             render json: {errors: heading.errors.full_messages}, status: :not_acceptable 
         end   
+    end
+    
+    def sanitize_name(name)
+        name.strip.capitalize
     end 
 
     def destroy

@@ -40,6 +40,7 @@ class Heading {
               let newHeading = new Heading(objectName, objectId) 
               newHeading.appendHeading(newHeadingSection, main)
               newHeading.appendDeleteButton(newHeadingSection)
+
               document.getElementById("new-heading-form").reset()
             }
 
@@ -67,6 +68,7 @@ class Heading {
       deleteButton.textContent = "Delete Heading"
       deleteButton.id = `delete${this.name}`
       headingSection.appendChild(deleteButton)
+      
 
       let heading = this
       deleteButton.addEventListener ('click', function(event) {
@@ -74,6 +76,13 @@ class Heading {
           heading.deleteHeading()
       }) 
     }
+
+    //deleteEventHandler(deleteButton, heading) {
+    //  deleteButton.addEventListener ('click', function(event) {
+    //    event.preventDefault()
+    //    heading.deleteHeading()
+    //})
+    //}
 
     deleteHeading() {
       const configObj = {

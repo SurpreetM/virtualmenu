@@ -7,8 +7,8 @@ class FoodItemsController < ApplicationController
     def create
         heading = Heading.find_by(name: params[:heading])  
         food_item = FoodItem.new
-        food_item.name = params[:name]
-        food_item.description = params[:description]
+        food_item.name = sanitize_name(params[:name])
+        food_item.description = sanitize_description(params[:description])
         food_item.price = params[:price]
         food_item.heading = heading
         if food_item.valid?
@@ -19,6 +19,18 @@ class FoodItemsController < ApplicationController
         end 
     end 
 
+    def sanitize_description(description)       
+        length = description.length
+        if description.slice(length-1) == "."
+            description.strip.capitalize
+        else
+            description.strip.capitalize + "." 
+        end
+    end 
+
+    def sanitize_name(heading)
+        heading.strip.capitalize
+    end
 
 
     def destroy
