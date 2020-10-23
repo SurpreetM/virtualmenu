@@ -27,13 +27,13 @@ fooditem_7 = FoodItem.create(name: "New York Strip Steak", description: "A 12oz.
 fooditem_8 = FoodItem.create(name: "Mushroom Ravioli", description: "Mushroom-Stuffed Ravioli in a Cream Sauce, Topped with Roasted Mixed Vegetables.", price: 10, heading: heading_2)
 
 
-ooditem_9 = FoodItem.create(name: "Sweet Potato Fries", price: 10, heading: heading_4)
-ooditem_10 = FoodItem.create(name: "Green Side Salad", price: 8, heading: heading_4)
-ooditem_11 = FoodItem.create(name: "Grilled Brocolli", price: 8, heading: heading_4)
+ooditem_9 = FoodItem.create(name: "Sweet Potato Fries", description: "Crispy, seasoned, and fried to perfection.", price: 10, heading: heading_4)
+ooditem_10 = FoodItem.create(name: "Green Side Salad", description "Green Salad with mixed greens, tomatoes, cucumber, red onion, Parmesan, croutons, and a quick balsamic vinaigrette.", price: 8, heading: heading_4)
+ooditem_11 = FoodItem.create(name: "Grilled Brocolli", description: "Broccoli marinated in garlic, herbs and olive oil, then seared.", price: 8, heading: heading_4)
 
-ooditem_12 = FoodItem.create(name: "Selection of Gelato", price: 8, heading: heading_5)
-ooditem_13= FoodItem.create(name: "Chocolate Brownies", price: 9, heading: heading_5)
-ooditem_14 = FoodItem.create(name: "Pumpkin Pie", price: 9, heading: heading_5)
+ooditem_12 = FoodItem.create(name: "Selection of Gelato", description "Three scoops of our homemade gelato. Please ask you server for current flavours." price: 8, heading: heading_5)
+ooditem_13= FoodItem.create(name: "Chocolate Brownies", description "super moist brownie with dark chocolate chunks, nuts & hot fudge.", price: 9, heading: heading_5)
+ooditem_14 = FoodItem.create(name: "Pumpkin Pie", description "Flaky crust filled with pumpkin spice mousse then topped with house-made whipped topping and caramel.",  price: 9, heading: heading_5)
 
 
 

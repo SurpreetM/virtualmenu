@@ -16,7 +16,7 @@ class Heading {
 
 
     static addHeading() {
-      const nameInput = document.getElementById("new-heading-name").value
+      let nameInput = document.getElementById("new-heading-name").value
           const configObj = {
             method: "POST",
             headers: {
@@ -42,9 +42,7 @@ class Heading {
               newHeading.appendDeleteButton(newHeadingSection)
 
               document.getElementById("new-heading-form").reset()
-            }
-
-            
+            }           
           }) 
     }
 
@@ -76,13 +74,6 @@ class Heading {
           heading.deleteHeading()
       }) 
     }
-
-    //deleteEventHandler(deleteButton, heading) {
-    //  deleteButton.addEventListener ('click', function(event) {
-    //    event.preventDefault()
-    //    heading.deleteHeading()
-    //})
-    //}
 
     deleteHeading() {
       const configObj = {
