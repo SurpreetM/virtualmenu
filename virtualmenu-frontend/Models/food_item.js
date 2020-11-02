@@ -45,6 +45,8 @@ class FoodItem {
         } else {
             let headingSection = document.getElementById(`${headingInput}`)
             let headingDeleteButton = document.getElementById(`delete${headingInput}`)
+
+            // const { id, attributes: { name, description, price, heading: { name }} } = object.data
   
             let objectName = object.data.attributes.name
             let objectDescription = object.data.attributes.description
@@ -71,10 +73,10 @@ class FoodItem {
       // INSTANCE METHODS 
 
       appendFoodItem(heading) {
-        let p = document.createElement('p')
-        p.id = `${this.heading}.${this.name}`
-        p.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
-        heading.appendChild(p)
+        let li = document.createElement('li')
+        li.id = `${this.heading}.${this.name}`
+        li.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
+        heading.appendChild(li)
       }
 
       appendDeleteButton() {

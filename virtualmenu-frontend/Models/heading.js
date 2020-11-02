@@ -51,13 +51,16 @@ class Heading {
     appendHeading(div, parentSection) {
       div.id = this.name
       div.innerHTML = `<h2>${this.name}</h2>`
-      parentSection.appendChild(div)
+      let headingSection = parentSection.appendChild(div)
       // add heading to new food item form (drop down options)
       let headingOption = document.createElement('option')
       let newFoodItemForm = document.getElementById("heading-options")
             headingOption.id = this.name
             headingOption.innerHTML = this.name
             newFoodItemForm.appendChild(headingOption)
+      let foodItemsList = document.createElement('ol')
+      headingSection.appendChild(foodItemsList)
+
     }
 
     appendDeleteButton(headingSection) {
