@@ -32,7 +32,7 @@ class Heading {
             let main = document.getElementById("current-menu") 
             let newHeadingSection = document.createElement("div")
             if (object.errors) {
-              alert(object.errors)
+              alert(object.errors[0])
             } else {
               let objectName = object.data.attributes.name
               let objectId = object.data.id

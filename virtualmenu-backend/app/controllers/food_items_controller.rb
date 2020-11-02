@@ -21,11 +21,15 @@ class FoodItemsController < ApplicationController
 
     def sanitize_description(description)       
         length = description.length
-        if description.slice(length-1) == "."
-            description.strip.capitalize
-        else
-            description.strip.capitalize + "." 
-        end
+        if length == 0
+            description
+        else 
+            if description.slice(length-1) == "."
+                description.strip.capitalize
+            else
+                description.strip.capitalize + "." 
+            end
+        end 
     end 
 
     def sanitize_name(heading)
