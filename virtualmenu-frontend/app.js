@@ -7,7 +7,7 @@ class App {
     } 
 
     getMenu() {
-        APIConnector.jsonData().then(this.appendMenu)
+        APIConnector.jsonData().then(json => this.appendMenu(json))
     }
 
     appendMenu(json) {

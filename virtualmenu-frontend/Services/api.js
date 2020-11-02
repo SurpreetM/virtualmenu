@@ -4,7 +4,7 @@ class APIConnector {
         return (
             fetch("http://localhost:3000/headings") 
             .then(response => response.json())
-        )
+            )  
     }
 
     static postHeading(configurationObject) {
