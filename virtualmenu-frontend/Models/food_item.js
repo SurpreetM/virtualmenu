@@ -74,22 +74,30 @@ class FoodItem {
 
       appendFoodItem(heading) {
         let li = document.createElement('li')
-        li.id = `${this.heading}.${this.name}`
-        li.innerHTML += `${this.name} <p style="text-align:left;"> ${this.description} <span style="float:right;"> $${this.price} </span> </p>`
+        li.id = `${this.name}.${this.heading}`
+        li.innerHTML += `${this.name}`
+        let p = document.createElement('p')  
+        p.innerHTML = `${this.description} <span style="float:right;"> $${this.price} </span>`
         heading.appendChild(li)
+        li.appendChild(p)
       }
 
       appendDeleteButton() {
-        let item = document.getElementById(`${this.heading}.${this.name}`)
+        
+        let item = document.getElementById(`${this.name}.${this.heading}`)
+        
         let deleteFood = document.createElement('button')
-        item.appendChild(deleteFood)
+  
         deleteFood.type = 'button'
         deleteFood.textContent = "Delete"
         deleteFood.id = `delete${this.name}`
+        item.appendChild(deleteFood)
 
         // Delete Event Listener
         let foodItem = this
+        console.log(foodItem)
         deleteFood.addEventListener ('click', function(event) {
+          alert("hrtkf")
           event.preventDefault()
           foodItem.deleteFoodItem()
           
@@ -111,7 +119,7 @@ class FoodItem {
           })
         }        
         alert(`You are deleting the food item "${this.name}"`)
-        let foodItemElement = document.getElementById(`${this.heading}.${this.name}`)
+        let foodItemElement = document.getElementById(`${this.name}.${this.heading}`)
         let headingSection = document.getElementById(`${this.heading}`)
         
         APIConnector.deleteFoodItem(configObj, this.id).then(function(object){

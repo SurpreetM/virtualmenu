@@ -48,6 +48,19 @@ class Heading {
 
     // INSTANCE METHODS
 
+    sortFoodItemsList(foodList) {
+      let foodInnerHTML = []
+      let items = foodList.getElementsByTagName("li")
+      for (let i = 0, l = items.length; i < l; i++){
+        foodInnerHTML.push(items[i].innerHTML)
+      }
+      foodInnerHTML.sort()
+      for(let i = 0, l = items.length; i < l; i++) { 
+      items[i].innerHTML = foodInnerHTML[i]
+    } 
+  }
+    
+
     appendHeading(div, parentSection) {
       div.id = this.name
       div.innerHTML = `<h2>${this.name}</h2>`
