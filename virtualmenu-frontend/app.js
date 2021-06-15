@@ -18,8 +18,7 @@ class App {
             let heading = new Heading(h.attributes.name, h.id)
             let headingSection = document.createElement('div')
             heading.appendHeading(headingSection, main)
-            let headingFoodItemsList = headingSection.getElementsByTagName("ol")[0]
-            
+ 
             let i = h.attributes.food_items 
             if (i.length < 1) {
                 heading.appendDeleteButton(headingSection)
@@ -27,14 +26,11 @@ class App {
             } else {
                 i.forEach(function(i) {
                     const foodItem = new FoodItem(i.name, i.description, i.price, heading.name, i.id)
-                    foodItem.appendFoodItem(headingFoodItemsList)
-                    foodItem.appendDeleteButton() 
-                })
-            } 
-            
-            heading.sortFoodItemsList(headingFoodItemsList)
-           
+                    foodItem.appendFoodItem(headingSection)
+                    foodItem.appendDeleteButton()
                     
+                })
+            }          
         })  
     }
 

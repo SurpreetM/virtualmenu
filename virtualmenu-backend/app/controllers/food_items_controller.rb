@@ -33,7 +33,7 @@ class FoodItemsController < ApplicationController
     end 
 
     def sanitize_name(heading)
-        heading.strip.capitalize
+        heading.titlecase
     end
 
 
